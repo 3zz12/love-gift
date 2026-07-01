@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💗 هدية خاصة 💗</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(-45deg,#ffd6e7,#ffc2d1,#ffb3c6,#ffe5ec);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+overflow:hidden;
+text-align:center;
+color:#d63384;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.page{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.hidden{
+display:none;
+}
+
+.envelope{
+font-size:120px;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.1);}
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:12px;
+font-size:20px;
+text-align:center;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:18px;
+}
+
+.bigHeart{
+font-size:120px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+50%{transform:scale(1.15);}
+}
+
+.counter{
+font-size:22px;
+line-height:2;
+}
+</style>
+</head>
+
+<body>
+
+<!-- الصفحة الأولى -->
+<div id="page1" class="page">
+
+<div class="envelope">💌</div>
+
+<h2>عندي حاجة صغيرة حبيت نهديهالك…</h2>
+
+<input id="code" placeholder="أدخلي الكود">
+
+<button onclick="checkCode()">فتح الرسالة 💗</button>
+
+</div>
+
+<!-- الصفحة الثانية -->
+<div id="page2" class="page hidden">
+
+<h2>💌 الرسالة</h2>
+
+<p id="typed"></p>
+
+<button onclick="nextPage()">Next ➜</button>
+
+</div>
+
+<!-- الصفحة الثالثة -->
+<div id="page3" class="page hidden">
+
+<h1>بدايتنا 💗</h1>
+
+<h2>2025 / 05 / 07</h2>
+
+<p id="loveText"></p>
+
+<div class="counter">
+<div id="days"></div>
+<div id="hours"></div>
+<div id="minutes"></div>
+</div>
+
+<button onclick="lastPage()">❤️</button>
+
+</div>
+
+<!-- الصفحة الأخيرة -->
+<div id="page4" class="page hidden">
+
+<div class="bigHeart">❤️</div>
+
+<h2>
+مهما نكتب ما نوصفش قداش نحبك،
+<br>
+وهاد الموقع غير حاجة صغيرة باش نفرحك 💗
+</h2>
+
+<h1>Forever ♾️❤️</h1>
+
+</div>
+
+<script>
+
+function checkCode(){
+
+let code=document.getElementById("code").value;
+
+if(code==="20042008"){
+
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+
+typeText();
+
+}else{
+
+alert("الكود غير صحيح 💔");
+}
+}
+
+const text=`حبيت نديرلك هدية جديدة صغيرة 💗
+
+قبل أي حاجة حابك تعرفي أني نحبك وربنا يخليك ليا يا قلبي، يا سندي وحياتي وقاع وش كاين ❤️
+
+أوعدك نوصل وين رانا حابين 💗💗🫶🏼`;
+
+function typeText(){
+
+let i=0;
+
+let target=document.getElementById("typed");
+
+let timer=setInterval(()=>{
+
+target.innerHTML+=text.charAt(i);
+
+i++;
+
+if(i>=text.length) clearInterval(timer);
+
+},50);
+
+}
+
+function nextPage(){
+
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("page3").classList.remove("hidden");
+
+setTimeout(()=>{
+document.getElementById("loveText").innerHTML="ليوم قتلك نحبك 🙂💗";
+},2000);
+
+updateCounter();
+
+}
+
+function updateCounter(){
+
+let start=new Date("2025-05-07");
+
+let now=new Date();
+
+let diff=now-start;
+
+let days=Math.floor(diff/(1000*60*60*24));
+let hours=Math.floor(diff/(1000*60*60));
+let minutes=Math.floor(diff/(1000*60));
+
+document.getElementById("days").innerHTML="عدد الأيام ❤️ : "+days;
+document.getElementById("hours").innerHTML="عدد الساعات ❤️ : "+hours;
+document.getElementById("minutes").innerHTML="عدد الدقائق ❤️ : "+minutes;
+
+}
+
+function lastPage(){
+
+document.getElementById("page3").classList.add("hidden");
+document.getElementById("page4").classList.remove("hidden");
+
+}
+</script>
+
+</body>
+</html>
